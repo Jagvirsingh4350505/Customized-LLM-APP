@@ -3,4 +3,4 @@ huggingface_hub
 PyMuPDF
 sentence-transformers
 numpy
-faiss-cpu
+faiss-cpu 

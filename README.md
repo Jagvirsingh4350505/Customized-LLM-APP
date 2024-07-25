@@ -1,42 +1,31 @@
-# Customized-LLM-APP
+# RAG Dermosis - Skincare Chatbot with PDF Reading
 
-Building a Retrieval-Augmented Generation (RAG) bot can significantly enhance the capabilities of a language model by incorporating external knowledge to generate more accurate and contextually relevant responses. This guide will walk you through creating a simple RAG bot using Gradio and the Hugging Face APIs.
+Welcome to the RAG Dermosis Skincare Chatbot repository. This project features an advanced conversational AI bot designed to provide personalized skincare advice and recommendations. The bot uses a Retrieval-Augmented Generation (RAG) system to enhance its responses by referencing information from a skin disease diagnosis document.
 
-But how does RAG enhance LLM’s performance?
+# Features
+- Personalized Skincare Advice: Offers recommendations based on skin type, concerns, and preferences.
+- Symptom Identification: Helps identify potential skin conditions by discussing symptoms.
+- Product Suggestions: Recommends products suitable for the user's skin type and concerns.
+- Routine Creation: Assists users in creating and optimizing their skincare routine.
+- General Skincare Tips: Provides general advice on skincare practices and ingredients.
+- Interactive Chat: Engages users in a friendly and informative conversation.
+- PDF Reading: Extracts and utilizes information from a provided PDF to enhance response accuracy.
+- Vector Database: Searches relevant documents using vector similarity for more accurate results.
 
-RAG improves the performance of language models by augmenting them with external documents. This method retrieves relevant documents based on the user query and combines them with the original prompt before passing them to the language model for response generation. This approach ensures that the language model can access up-to-date and domain-specific information without the need for extensive retraining.
+# Usage
+You can interact with the bot by visiting the local Gradio interface. Simply type your skincare-related queries, and the bot will respond with relevant advice and suggestions, enhanced by the information extracted from the PDF.
 
+# Key Components
+- Inference Client: Uses Hugging Face's Inference API for generating chatbot responses.
+- PDF Processing: Extracts text from the provided PDF file and stores it in the app's documents.
+- Vector Database: Builds a vector database using the content of the PDF for document similarity search.
+- Response Function: Handles the conversation logic, maintaining the history of interactions, generating responses based on - user input, and retrieving relevant documents from the vector database.
+- Gradio Interface: Provides a user-friendly web interface for interacting with the chatbot.
 
-
-A common scenario of RAG helping LLM (Source)
-
-The basic steps in RAG can be simplified as follows:
-
-Input: The question to which the LLM system responds is referred to as the input. If no RAG is used, the LLM is directly used to respond to the question.
-
-Indexing: If RAG is used, then a series of related documents are indexed by chunking them first, generating embeddings of the chunks, and indexing them into a vector store. At inference, the query is also embedded in a similar way.
-
-
-Basic retrieval steps in RAG. (Source)
-
-Retrieval: The relevant documents are obtained by comparing the query against the indexed vectors, also denoted as “Relevant Documents”.
-
-Generation: The relevant documents are combined with the original prompt as additional context. The combined text and prompt are then passed to the model for response generation which is then prepared as the final output of the system to the user.
-
-In the example provided, using the model directly fails to respond to the question due to a lack of knowledge of current events. On the other hand, when using RAG, the system can pull the relevant information needed for the model to answer the question appropriately. (Source)
-
-Now Let’s Build a Chatbot using RAG:
-
-I have used Zephyr LLM model and all-MiniLM-L6-v2 sentence transformer model. This sentence-transformers model maps sentences & paragraphs to a 384 dimensional dense vector space and can be used for tasks like clustering or semantic search.
-
-The all-* models were trained on all available training data (more than 1 billion training pairs) and are designed as general purpose models. The all-mpnet-base-v2 model provides the best quality, while all-MiniLM-L6-v2 is 5 times faster and still offers good quality. Toggle All models to see all evaluated original models.
-
-We need the following ingredients:
-
-1. A PDF as your knowledgebase
-
-2. A requirements.txt file
-
-3. An app.py file
-
-4. An account on Hugging Face (See this blog to learn about building a LLM chatbot in Hugging Face)
+# Contributing
+Contributions are welcome! Please feel free to submit a Pull Request.
+- Fork the repository
+- Create your feature branch (git checkout -b feature/your-feature)
+- Commit your changes (git commit -am 'Add your feature')
+- Push to the branch (git push origin feature/your-feature)
+- Create a new Pull Request

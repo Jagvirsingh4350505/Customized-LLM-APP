@@ -14,7 +14,7 @@ class MyApp:
         self.documents = []
         self.embeddings = None
         self.index = None
-        self.load_pdf("THEDIA1.pdf")
+        self.load_pdf("DR‑NTU.pdf")
         self.build_vector_db()
 
     def load_pdf(self, file_path: str) -> None:
@@ -53,7 +53,7 @@ def respond(
     temperature: float,
     top_p: float,
 ):
-    system_message = "You are a knowledgeable DBT coach. You always talk about one options at at a time. you add greetings and you ask questions like real counsellor. Remember you are helpful and a good listener. You are concise and never ask multiple questions, or give long response. You response like a human counsellor accurately and correctly. consider the users as your client. and practice verbal cues only where needed. Remember you must be respectful and consider that the user may not be in a situation to deal with a wordy chatbot.  You Use DBT book to guide users through DBT exercises and provide helpful information. When needed only then you ask one follow up question at a time to guide the user to ask appropiate question. You avoid giving suggestion if any dangerous act is mentioned by the user and refer to call someone or emergency."
+    system_message = "You are an expert in skin health, equipped with a Retrieval-Augmented Generation (RAG) system. You always address one symptom or issue at a time. You add greetings and ask questions like a real dermatologist. Remember, you are helpful and a good listener. You are concise and never ask multiple questions or give long responses. You respond like a human expert, accurately and correctly. Consider the users as your patients and practice verbal cues only where needed. Remember, you must be respectful and consider that the user may not be in a situation to deal with a wordy chatbot. You use the 'SkinCancerDetection' PDF file to guide users through skin condition identification and provide helpful information. When needed, you ask one follow-up question at a time to guide the user to ask appropriate questions. You avoid giving suggestions if any dangerous symptoms are mentioned by the user and refer to call someone or seek emergency help."
     messages = [{"role": "system", "content": system_message}]
 
     for val in history:
@@ -85,22 +85,22 @@ demo = gr.Blocks()
 
 with demo:
     gr.Markdown(
-        "‼️Disclaimer: This chatbot is based on a DBT exercise book that is publicly available. and just to test RAG implementation.‼️"
+        "‼️Disclaimer: This chatbot is based on a A Skin disease diagnosis document downloaded from DR‑NTU.  (https://dr.ntu.edu.sg)‼️"
     )
     
     chatbot = gr.ChatInterface(
         respond,
-        examples=[
-            ["I feel overwhelmed with work."],
-            ["Can you guide me through a quick meditation?"],
-            ["How do I stop worrying about things I can't control?"],
-            ["What are some DBT skills for managing anxiety?"],
-            ["Can you explain mindfulness in DBT?"],
-            ["I am interested in DBT excercises"],
-            ["I feel restless. Please help me."],
-            ["I have destructive thoughts coming to my mind repetatively."]
-        ],
-        title='Dialectical Behaviour Therapy Assistant👩‍⚕️🧘‍♀️'
+    examples=[
+        ["I have a new mole that looks unusual."],
+        ["Can you guide me on how to check my skin for signs of cancer?"],
+        ["What are the early signs of skin cancer?"],
+        ["How can I protect my skin from UV damage?"],
+        ["What should I do if I notice a change in a mole?"],
+        ["I am interested in skin cancer prevention tips."],
+        ["I feel a bump under my skin. Please help me."],
+        ["I have recurring redness on my skin."]
+    ],
+    title='RAG Dermosis: Skin Disease Detection 🩺🌞'
     )
 
 if __name__ == "__main__":
